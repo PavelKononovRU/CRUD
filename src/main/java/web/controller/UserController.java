@@ -35,11 +35,11 @@ public class UserController {
         return "redirect:/users";
     }*/
 
-    @PatchMapping("/{id}")
+/*    @PatchMapping("/{id}")
     public String update(@ModelAttribute User user, @PathVariable int id) {
         userServiceImpl.update(id, new User());
         return "redirect:/users";
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable int id) {
@@ -47,11 +47,27 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @RequestMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("myUser", userServiceImpl.findById(id));
+
+
+
+
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable int id) {
+        model.addAttribute("editUser", userServiceImpl.findById(id));
         return "edit";
     }
+
+    @PatchMapping("/{id}")
+    public String updateUser(@ModelAttribute("editUser") User toUpdateUser, @PathVariable("id") int id) {
+        userServiceImpl.update(id, toUpdateUser);
+        return "redirect:/users";
+    }
+
+
+
+
+
 
     @GetMapping("/new")
     public String addNewUser(@ModelAttribute("newUser") User user) {

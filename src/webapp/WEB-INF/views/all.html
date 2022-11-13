@@ -28,11 +28,13 @@
         <td th:text="${user.getSurname()}"></td>
         <td th:text="${user.getEmail()}"></td>
         <td th:text="${user.getAge()}"></td>
-        <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="info"></a></td>
 
-        <td><input type="button" value="UPDATE" th:action="@{/users/{id}(id=${user.getId()})}"
+        <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="info"></a></td>
+        <td><a th:href="@{/users/{id}/edit(id=${user.getId()})}" th:text="update"></a></td>
+
+<!--        <td><input type="button" value="UPDATE" th:data-url="@{/users/{id}(id=${user.getId()})}"
                    onclick="window.location.href= this.getAttribute('data-url');"/>
-        </td>
+        </td>-->
 
         <td>
             <form th:action="@{/users/{id}(id=${user.getId()})}" th:method="DELETE">
@@ -49,7 +51,7 @@
 <br/>
 <hr/>
 
-<a href="/users/new">Create new user</a>
+<a href="/users/new">Create New User</a>
 
 </body>
 </html>
