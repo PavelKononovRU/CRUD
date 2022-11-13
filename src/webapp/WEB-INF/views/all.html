@@ -29,15 +29,21 @@
         <td th:text="${user.getEmail()}"></td>
         <td th:text="${user.getAge()}"></td>
 
-        <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="info"></a></td>
-        <!--<td><a th:href="@{/users/{id}/edit(id=${user.getId()})}" th:text="update"></a></td>-->
+        <!--Кнопка Информации-->
+        <td>
+            <form th:action="@{/users/{id}(id=${user.getId()})}">
+                <button> INFO </button>
+            </form>
+        </td>
 
+        <!--Кнопка Удаления пользователя-->
         <td>
             <form th:action="@{/users/{id}(id=${user.getId()})}" th:method="DELETE">
                 <input type="submit" value="DELETE"/>
             </form>
         </td>
 
+        <!--Кнопка Обновления Информации-->
         <td>
             <form th:action="@{/users/{id}/edit(id=${user.getId()})}">
                 <button> UPDATE USER </button>
