@@ -1,24 +1,25 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-@Service
+
+@Repository
 @Transactional
 public class UsedDAOImpl implements UserDAO {
 
     @PersistenceContext
     EntityManager entityManager;
 
+
     @Override
     @Transactional
     public List<User> findAll() {
-        List<User>listUsers;
+        List<User> listUsers;
         listUsers = entityManager.createQuery("from User", User.class).getResultList();
         return listUsers;
     }
@@ -26,7 +27,8 @@ public class UsedDAOImpl implements UserDAO {
     @Override
     @Transactional
     public User findById(int id) {
-        return entityManager.find(User.class, id);    }
+        return entityManager.find(User.class, id);
+    }
 
     @Override
     @Transactional

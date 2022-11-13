@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
+
 @Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
 public class HibernateConfig {
@@ -30,32 +31,33 @@ public class HibernateConfig {
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/DBUsers");
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "rootroot" );
+        dataSource.setUsername("root");
+        dataSource.setPassword("rootroot");
         return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(){
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(
-                entityManagerFactoryBean().getObject() );
+                entityManagerFactoryBean().getObject());
 
         return transactionManager;
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
     Properties additionalProperties() {
         return new Properties() {
-            {   setProperty("hibernate.hbm2ddl.auto", "update");
+            {
+                setProperty("hibernate.hbm2ddl.auto", "update");
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
             }
         };

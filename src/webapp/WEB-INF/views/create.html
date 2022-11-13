@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title> USER CREATE</title>
+    <title> Create User</title>
 </head>
 <body>
-<h2> CREATE USER</h2>
+<h2> Create User</h2>
 
-<form th:method="PUT" th:action="@{/users}" th:object="${newUser}">
+<form th:method="POST" th:action="@{/users}" th:object="${newUser}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <br/><br>
@@ -23,7 +23,7 @@
     <label for="age">Enter age: </label>
     <input type="text" th:field="*{age}" id="age"/>
     <br/><br>
-    <input type="submit" value="Create!"/>
+    <input type="submit" value="Create User"/>
 </form>
 
 </body>
