@@ -2,7 +2,7 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import web.dao.UsedDAOImpl;
+import web.dao.UserDAO;
 import web.model.User;
 
 import java.util.List;
@@ -11,35 +11,34 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
 
-    final private UsedDAOImpl userDaoImpl;
-
+    UserDAO userDao;
     @Autowired
-    public UserServiceImpl(UsedDAOImpl userDaoImpl) {
-        this.userDaoImpl = userDaoImpl;
+    public UserServiceImpl(UserDAO userDao) {
+        this.userDao = userDao;
     }
 
     @Override
     public List<User> findAll() {
-        return userDaoImpl.findAll();
+        return userDao.findAll();
     }
 
     @Override
     public User findById(int id) {
-        return userDaoImpl.findById(id);
+        return userDao.findById(id);
     }
 
     @Override
     public void delete(int id) {
-        userDaoImpl.delete(id);
+        userDao.delete(id);
     }
 
     @Override
     public void update(int id, User user) {
-        userDaoImpl.update(id, user);
+        userDao.update(id, user);
     }
 
     @Override
     public void save(User user) {
-        userDaoImpl.save(user);
+        userDao.save(user);
     }
 }
