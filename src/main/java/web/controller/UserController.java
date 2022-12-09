@@ -38,6 +38,12 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @GetMapping("/add")
+    public String add() {
+        userService.addUsers();
+        return "redirect:/users";
+    }
+
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable int id) {
